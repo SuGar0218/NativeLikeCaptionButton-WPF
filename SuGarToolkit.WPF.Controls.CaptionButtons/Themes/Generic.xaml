@@ -1,0 +1,12 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.CaptionButtons">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButton.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonBar.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/FontIcon.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

@@ -1,0 +1,72 @@
+﻿<Window
+    x:Class="SuGarToolkit.WPF.Samples.CaptionButtons.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SuGarToolkit.WPF.Samples.CaptionButtons"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:SuGarToolkit.WPF.Controls.CaptionButtons;assembly=SuGarToolkit.WPF.Controls.CaptionButtons"
+    xmlns:system="clr-namespace:System;assembly=netstandard"
+    Title="SuGarToolkit.WPF.Controls.CaptionButtons"
+    Width="800"
+    Height="450"
+    FontSize="14"
+    StateChanged="Window_StateChanged"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:MainViewModel x:Name="ViewModel" x:FieldModifier="private" />
+    </Window.DataContext>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            x:Name="WindowChrome"
+            CaptionHeight="{Binding CaptionButtonHeight, Mode=OneWay}"
+            UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TitleBarArea" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <my:CaptionButtonBar
+                Grid.Column="1"
+                Height="{Binding CaptionButtonHeight, Mode=OneWay}"
+                CloseButtonVisibility="{Binding IsCloseButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                IsCloseButtonEnabled="{Binding IsCloseButtonEnabled, Mode=OneWay}"
+                IsMaximizeButtonEnabled="{Binding IsMaximizeButtonEnabled, Mode=OneWay}"
+                IsMinimizeButtonEnabled="{Binding IsMinimizeButtonEnabled, Mode=OneWay}"
+                MaximizeButtonVisibility="{Binding IsMaximizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                MinimizeButtonVisibility="{Binding IsMinimizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <CheckBox Content="显示最小化按钮" IsChecked="{Binding IsMinimizeButtonVisible, Mode=TwoWay}" />
+            <CheckBox Content="显示最大化按钮" IsChecked="{Binding IsMaximizeButtonVisible, Mode=TwoWay}" />
+            <CheckBox Content="显示关闭按钮" IsChecked="{Binding IsCloseButtonVisible, Mode=TwoWay}" />
+            <CheckBox Content="启用最小化按钮" IsChecked="{Binding IsMinimizeButtonEnabled, Mode=TwoWay}" />
+            <CheckBox Content="启用最大化按钮" IsChecked="{Binding IsMaximizeButtonEnabled, Mode=TwoWay}" />
+            <CheckBox Content="启用关闭按钮" IsChecked="{Binding IsCloseButtonEnabled, Mode=TwoWay}" />
+            <TextBlock Text="标题按钮高度" />
+            <ComboBox SelectedItem="{Binding CaptionButtonHeight, Mode=TwoWay}">
+                <system:Double>30</system:Double>
+                <system:Double>32</system:Double>
+                <system:Double>36</system:Double>
+                <system:Double>48</system:Double>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+
+</Window>
