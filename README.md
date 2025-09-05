@@ -27,7 +27,7 @@ Just add ```CaptionButtonBar``` to your window, every button will change the win
     <WindowChrome.WindowChrome>
         <WindowChrome
             x:Name="WindowChrome"
-            CaptionHeight="{Binding CaptionButtonHeight, Mode=OneWay}"
+            CaptionHeight="30"
             UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
 
