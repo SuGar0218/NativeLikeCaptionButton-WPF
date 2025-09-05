@@ -19,23 +19,29 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter
+                            x:Name="ContentPresenter"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Content}"
                             Focusable="False" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ContentPresenter" Property="Opacity" Value="{StaticResource CaptionButtonInactiveForegroundOpacity}" />
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="ContentPresenter" Property="Opacity" Value="{StaticResource CaptionButtonInactiveForegroundOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource Windows11CaptionButtonHoverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CaptionButtonHoverBackground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource Windows11CaptionButtonPressedBackground}" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="Background" Value="{DynamicResource CaptionButtonPressedBackground}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -84,11 +90,11 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource Windows11CaptionCloseButtonHoverBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CaptionCloseButtonHoverBackground}" />
                 <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource Windows11CaptionCloseButtonPressedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource CaptionCloseButtonPressedBackground}" />
                 <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
             </Trigger>
         </Style.Triggers>

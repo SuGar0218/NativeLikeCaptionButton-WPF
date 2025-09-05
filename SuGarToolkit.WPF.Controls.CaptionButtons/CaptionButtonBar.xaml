@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:CaptionButtonBar}">
-        <Setter Property="Height" Value="{StaticResource Windows11CaptionTallHeight}" />
+        <Setter Property="Height" Value="{StaticResource CaptionTallHeight}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>

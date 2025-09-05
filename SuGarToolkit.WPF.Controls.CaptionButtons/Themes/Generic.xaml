@@ -4,6 +4,7 @@
     xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.CaptionButtons">
 
     <ResourceDictionary.MergedDictionaries>
+        <!--<local:CaptionButtonColorDictionary />-->
         <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButton.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonBar.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/FontIcon.xaml" />

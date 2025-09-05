@@ -34,11 +34,15 @@ public partial class CaptionButtonBar : Control
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         OwnerWindow = Window.GetWindow(this);
+        OwnerWindow.Activated += OnActivated;
+        OwnerWindow.Deactivated += OnDeactivated;
         OwnerWindow.StateChanged += OnOwnerWindowStateChanged;
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
+        OwnerWindow.StateChanged -= OnOwnerWindowStateChanged;
+        OwnerWindow.Activated -= OnActivated;
         OwnerWindow.StateChanged -= OnOwnerWindowStateChanged;
         OwnerWindow = null!;
     }
@@ -46,6 +50,22 @@ public partial class CaptionButtonBar : Control
     private void OnOwnerWindowStateChanged(object? sender, EventArgs e)
     {
         OwnerWindowState = OwnerWindow.WindowState;
+    }
+
+    private void OnActivated(object? sender, EventArgs e)
+    {
+        MinimizeButton.IsActive = true;
+        MaximizeButton.IsActive = true;
+        RestoreButton.IsActive = true;
+        CloseButton.IsActive = true;
+    }
+
+    private void OnDeactivated(object? sender, EventArgs e)
+    {
+        MinimizeButton.IsActive = false;
+        MaximizeButton.IsActive = false;
+        RestoreButton.IsActive = false;
+        CloseButton.IsActive = false;
     }
 
     public CaptionMinimizeButton MinimizeButton { get; private set; }
