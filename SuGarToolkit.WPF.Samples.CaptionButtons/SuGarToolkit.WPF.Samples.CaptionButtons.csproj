@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SuGarToolkit.WPF.Controls.CaptionButtons\SuGarToolkit.WPF.Controls.CaptionButtons.csproj" />
+	  <ProjectReference Include="..\SuGarToolkit.WPF.Controls.CaptionButtons\SuGarToolkit.WPF.Controls.CaptionButtons.csproj" />
 	</ItemGroup>
 
 </Project>
