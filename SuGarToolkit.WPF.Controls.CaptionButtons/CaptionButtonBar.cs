@@ -1,19 +1,7 @@
 ﻿using SuGarToolkit.WPF.SourceGenerators;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SuGarToolkit.WPF.Controls.CaptionButtons;
 
@@ -24,7 +12,7 @@ namespace SuGarToolkit.WPF.Controls.CaptionButtons;
 public partial class CaptionButtonBar : Control
 {
     static CaptionButtonBar() => DefaultStyleKeyProperty.OverrideMetadata(typeof(CaptionButtonBar), new FrameworkPropertyMetadata(typeof(CaptionButtonBar)));
-    
+
     public CaptionButtonBar()
     {
         Loaded += OnLoaded;

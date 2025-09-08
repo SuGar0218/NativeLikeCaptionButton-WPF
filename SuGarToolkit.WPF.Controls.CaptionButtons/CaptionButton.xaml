@@ -5,6 +5,8 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButton_themeresource.xaml" />
+        <!--<ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonColors.Windows11.xaml" />-->
+        <local:CaptionButtonColorDictionary />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="CaptionButtonDefaultStyle" TargetType="{x:Type local:CaptionButton}">
@@ -26,9 +28,6 @@
                             Focusable="False" />
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="ContentPresenter" Property="Opacity" Value="{StaticResource CaptionButtonInactiveForegroundOpacity}" />
-                        </Trigger>
                         <Trigger Property="IsActive" Value="False">
                             <Setter TargetName="ContentPresenter" Property="Opacity" Value="{StaticResource CaptionButtonInactiveForegroundOpacity}" />
                         </Trigger>
@@ -38,10 +37,16 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource CaptionButtonHoverBackground}" />
+                <Setter Property="Background" Value="{StaticResource CaptionButtonHoverBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource CaptionButtonHoverForeground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource CaptionButtonPressedBackground}" />
+                <Setter Property="Background" Value="{StaticResource CaptionButtonPressedBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource CaptionButtonPressedForeground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource CaptionButtonDisabledBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource CaptionButtonDisabledForeground}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -90,12 +95,12 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource CaptionCloseButtonHoverBackground}" />
-                <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
+                <Setter Property="Background" Value="{StaticResource CaptionCloseButtonHoverBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource CaptionCloseButtonHoverForeground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource CaptionCloseButtonPressedBackground}" />
-                <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
+                <Setter Property="Background" Value="{StaticResource CaptionCloseButtonPressedBackground}" />
+                <Setter Property="Foreground" Value="{StaticResource CaptionCloseButtonPressedForeground}" />
             </Trigger>
         </Style.Triggers>
     </Style>
