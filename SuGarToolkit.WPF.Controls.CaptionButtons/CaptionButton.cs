@@ -14,6 +14,6 @@ public partial class CaptionButton : Button
         //Resources.MergedDictionaries.Add(new CaptionButtonColorDictionary());
     }
 
-    [DependencyProperty]
+    [DependencyProperty(DefaultValue = true)]
     public partial bool IsActive { get; set; }
 }

@@ -4,6 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=netstandard">
 
     <system:Double x:Key="CaptionStandardHeight">30</system:Double>
+    <system:Double x:Key="CaptionMiddleHeight">36</system:Double>
     <system:Double x:Key="CaptionTallHeight">48</system:Double>
 
 </ResourceDictionary>

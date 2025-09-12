@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:CaptionButtonBar}">
-        <Setter Property="Height" Value="{StaticResource CaptionTallHeight}" />
+        <Setter Property="MinHeight" Value="{StaticResource CaptionTallHeight}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -17,13 +17,20 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
                             <local:CaptionMinimizeButton
                                 x:Name="MinimizeButton"
+                                Grid.Column="0"
                                 IsEnabled="{TemplateBinding IsMinimizeButtonEnabled}"
                                 Visibility="{TemplateBinding MinimizeButtonVisibility}"
                                 WindowChrome.IsHitTestVisibleInChrome="True" />
                             <Grid
+                                Grid.Column="1"
                                 IsEnabled="{TemplateBinding IsMaximizeButtonEnabled}"
                                 Visibility="{TemplateBinding MaximizeButtonVisibility}"
                                 WindowChrome.IsHitTestVisibleInChrome="True">
@@ -32,10 +39,11 @@
                             </Grid>
                             <local:CaptionCloseButton
                                 x:Name="CloseButton"
+                                Grid.Column="2"
                                 IsEnabled="{TemplateBinding IsCloseButtonEnabled}"
                                 Visibility="{TemplateBinding CloseButtonVisibility}"
                                 WindowChrome.IsHitTestVisibleInChrome="True" />
-                        </StackPanel>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="OwnerWindowState" Value="Maximized">

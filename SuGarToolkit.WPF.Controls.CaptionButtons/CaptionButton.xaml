@@ -57,7 +57,7 @@
         TargetType="{x:Type local:CaptionButton}">
         <Setter Property="Content">
             <Setter.Value>
-                <local:FontIcon Glyph="{StaticResource CaptionMinimizeButtonGlyph}" />
+                <local:FontIcon FontSize="{StaticResource CaptionButtonIconFontSize}" Glyph="{StaticResource CaptionMinimizeButtonGlyph}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -68,7 +68,7 @@
         TargetType="{x:Type local:CaptionButton}">
         <Setter Property="Content">
             <Setter.Value>
-                <local:FontIcon Glyph="{StaticResource CaptionMaximizeButtonGlyph}" />
+                <local:FontIcon FontSize="{StaticResource CaptionButtonIconFontSize}" Glyph="{StaticResource CaptionMaximizeButtonGlyph}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -79,7 +79,7 @@
         TargetType="{x:Type local:CaptionButton}">
         <Setter Property="Content">
             <Setter.Value>
-                <local:FontIcon Glyph="{StaticResource CaptionRestoryButtonGlyph}" />
+                <local:FontIcon FontSize="{StaticResource CaptionButtonIconFontSize}" Glyph="{StaticResource CaptionRestoryButtonGlyph}" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -90,7 +90,7 @@
         TargetType="{x:Type local:CaptionButton}">
         <Setter Property="Content">
             <Setter.Value>
-                <local:FontIcon Glyph="{StaticResource CaptionCloseButtonGlyph}" />
+                <local:FontIcon FontSize="{StaticResource CaptionButtonIconFontSize}" Glyph="{StaticResource CaptionCloseButtonGlyph}" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>

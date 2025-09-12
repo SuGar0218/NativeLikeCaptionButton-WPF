@@ -9,7 +9,7 @@
     <system:String x:Key="CaptionRestoryButtonGlyph">&#xE923;</system:String>
     <system:String x:Key="CaptionCloseButtonGlyph">&#xE8BB;</system:String>
     <system:Double x:Key="CaptionButtonWidth">48</system:Double>
-
+    <system:Double x:Key="CaptionButtonIconFontSize">10</system:Double>
     <system:Double x:Key="CaptionButtonInactiveForegroundOpacity">0.382</system:Double>
 
 </ResourceDictionary>
