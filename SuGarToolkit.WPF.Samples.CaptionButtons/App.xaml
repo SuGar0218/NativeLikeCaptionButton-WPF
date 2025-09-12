@@ -7,8 +7,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonColors.Windows10.xaml" />-->
-                <!--<ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/Themes/Generic.xaml" />-->
+                <!--<ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />-->
+                <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
