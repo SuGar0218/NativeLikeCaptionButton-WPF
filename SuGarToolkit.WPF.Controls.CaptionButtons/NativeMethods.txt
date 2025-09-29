@@ -1,2 +1,2 @@
-﻿SetWindowSubclass
-ScreenToClient
+﻿GetWindowLong
+SetWindowLong

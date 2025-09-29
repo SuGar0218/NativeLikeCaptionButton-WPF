@@ -37,8 +37,10 @@
             Height="{Binding TitleBarHeight, Mode=OneWay}"
             BackButtonVisibility="{Binding IsBackButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             CloseButtonVisibility="{Binding IsCloseButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+            HelpButtonVisibility="{Binding IsHelpButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             IsBackButtonEnabled="{Binding IsBackButtonEnabled, Mode=OneWay}"
             IsCloseButtonEnabled="{Binding IsCloseButtonEnabled, Mode=OneWay}"
+            IsHelpButtonEnabled="{Binding IsHelpButtonEnabled, Mode=OneWay}"
             IsMaximizeButtonEnabled="{Binding IsMaximizeButtonEnabled, Mode=OneWay}"
             IsMinimizeButtonEnabled="{Binding IsMinimizeButtonEnabled, Mode=OneWay}"
             IsPaneToggleButtonEnabled="{Binding IsPaneToggleButtonEnabled, Mode=OneWay}"
@@ -54,7 +56,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Grid.Column="0"
-                        Margin="{StaticResource TitleBarCaptionTextMargin}"
+                        Margin="8,0"
                         VerticalAlignment="Center"
                         Text="CaptionText"
                         Visibility="{Binding IsCaptionTextVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -86,36 +88,30 @@
 
             <my:NativeLikeTitleBar.CustomFooter>
                 <StackPanel Orientation="Horizontal">
-                    <my:CaptionButton
+                    <my:TitleBarButton
                         IsEnabled="{Binding IsPersonPictureEnabled, Mode=OneWay}"
                         Visibility="{Binding IsPersonPictureVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         WindowChrome.IsHitTestVisibleInChrome="True">
                         <my:FontIcon FontSize="14" Glyph="&#xE77B;" />
-                    </my:CaptionButton>
-                    <my:CaptionButton
+                    </my:TitleBarButton>
+                    <my:TitleBarButton
                         IsEnabled="{Binding IsThemeToggleButtonEnabled, Mode=OneWay}"
                         Visibility="{Binding IsThemeToggleButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         WindowChrome.IsHitTestVisibleInChrome="True">
                         <my:FontIcon FontSize="14" Glyph="&#xE793;" />
-                    </my:CaptionButton>
-                    <my:CaptionButton
+                    </my:TitleBarButton>
+                    <my:TitleBarButton
                         IsEnabled="{Binding IsSettingsButtonEnabled, Mode=OneWay}"
                         Visibility="{Binding IsSettingsButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         WindowChrome.IsHitTestVisibleInChrome="True">
                         <my:FontIcon FontSize="14" Glyph="&#xE713;" />
-                    </my:CaptionButton>
-                    <my:CaptionButton
-                        IsEnabled="{Binding IsHelpButtonEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsHelpButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <my:FontIcon FontSize="14" Glyph="&#xE897;" />
-                    </my:CaptionButton>
-                    <my:CaptionButton
+                    </my:TitleBarButton>
+                    <my:TitleBarButton
                         IsEnabled="{Binding IsFullScreenButtonEnabled, Mode=OneWay}"
                         Visibility="{Binding IsFullScreenButtonEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         WindowChrome.IsHitTestVisibleInChrome="True">
                         <my:FontIcon FontSize="12" Glyph="&#xE740;" />
-                    </my:CaptionButton>
+                    </my:TitleBarButton>
                 </StackPanel>
             </my:NativeLikeTitleBar.CustomFooter>
 
@@ -198,16 +194,16 @@
                                 <CheckBox Content="IsEnabled" IsChecked="{Binding IsMinimizeButtonEnabled, Mode=TwoWay}" />
                             </StackPanel>
                         </Expander>
-                        <Expander Header="FullScreenButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsFullScreenButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsFullScreenButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
                         <Expander Header="HelpButton">
                             <StackPanel>
                                 <CheckBox Content="Visiblity" IsChecked="{Binding IsHelpButtonVisible, Mode=TwoWay}" />
                                 <CheckBox Content="IsEnabled" IsChecked="{Binding IsHelpButtonEnabled, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="FullScreenButton">
+                            <StackPanel>
+                                <CheckBox Content="Visiblity" IsChecked="{Binding IsFullScreenButtonVisible, Mode=TwoWay}" />
+                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsFullScreenButtonEnabled, Mode=TwoWay}" />
                             </StackPanel>
                         </Expander>
                         <Expander Header="SettingsButton">

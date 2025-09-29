@@ -8,11 +8,11 @@ public class CaptionButtonColorDictionary : ResourceDictionary
     {
         if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build >= 22000)
         {
-            Source = new Uri("/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonColors.Windows11.xaml", UriKind.Relative);
+            Source = new Uri("/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButton/CaptionButtonColors.Windows11.xaml", UriKind.Relative);
         }
         else
         {
-            Source = new Uri("/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButtonColors.Windows10.xaml", UriKind.Relative);
+            Source = new Uri("/SuGarToolkit.WPF.Controls.CaptionButtons;component/CaptionButton/CaptionButtonColors.Windows10.xaml", UriKind.Relative);
         }
     }
 }

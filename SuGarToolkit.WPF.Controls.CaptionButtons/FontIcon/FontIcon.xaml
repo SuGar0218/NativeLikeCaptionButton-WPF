@@ -3,9 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:SuGarToolkit.WPF.Controls.CaptionButtons">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/SuGarToolkit.WPF.Controls.CaptionButtons;component/FontIcon_themeresource.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+    <FontFamily x:Key="FontIconFontFamily">Segoe Fluent Icons, Segoe MDL2 Assets, Segoe UI Symbol</FontFamily>
 
     <Style TargetType="{x:Type local:FontIcon}">
         <Setter Property="Template">
