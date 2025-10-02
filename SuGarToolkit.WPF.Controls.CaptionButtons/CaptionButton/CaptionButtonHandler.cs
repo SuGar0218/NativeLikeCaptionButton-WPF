@@ -16,12 +16,15 @@ public class CaptionButtonHandler
     public void Add(CaptionButton button)
     {
         _buttons.Add(button);
-        button.IsVisibleChanged += OnButtonIsVisibleChanged;
+
         if (button.IsVisible)
         {
             DependencyObject child = VisualTreeHelper.GetChild(button, 0);
-            _cacheButtonToChild.Add(button, child);
             _cacheChildToButton.Add(child, button);
+        }
+        else
+        {
+            button.IsVisibleChanged += OnButtonIsVisibleChanged;
         }
     }
 
@@ -31,13 +34,8 @@ public class CaptionButtonHandler
         if (button.IsVisible)
         {
             DependencyObject child = VisualTreeHelper.GetChild(button, 0);
-            _cacheButtonToChild.Add(button, child);
             _cacheChildToButton.Add(child, button);
-        }
-        else if (_cacheButtonToChild.TryGetValue(button, out DependencyObject? child))
-        {
-            _cacheChildToButton.Remove(child);
-            _cacheButtonToChild.Remove(button);
+            button.IsVisibleChanged -= OnButtonIsVisibleChanged;
         }
     }
 
@@ -129,7 +127,6 @@ public class CaptionButtonHandler
 
     private readonly HwndSource? _hwndSource;
     private readonly HashSet<CaptionButton> _buttons = [];
-    private readonly Dictionary<CaptionButton, DependencyObject> _cacheButtonToChild = [];
     private readonly Dictionary<DependencyObject, CaptionButton> _cacheChildToButton = [];
 
     private CaptionButton? HoveredButton
