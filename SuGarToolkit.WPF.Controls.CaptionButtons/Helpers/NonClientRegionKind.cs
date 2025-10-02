@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuGarToolkit.WPF.Controls.CaptionButtons.Helpers;
+﻿namespace SuGarToolkit.WPF.Controls.CaptionButtons.Helpers;
 
 public enum NonClientRegionKind
 {

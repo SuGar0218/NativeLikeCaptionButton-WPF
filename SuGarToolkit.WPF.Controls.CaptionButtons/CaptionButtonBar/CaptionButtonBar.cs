@@ -93,7 +93,7 @@ public partial class CaptionButtonBar : Control
         _ownerWindow.Deactivated += OnDeactivated;
         _ownerWindow.StateChanged += OnOwnerWindowStateChanged;
 
-        _ownerHwndSource = (HwndSource) PresentationSource.FromVisual(_ownerWindow);
+        _ownerHwndSource = HwndSource.FromHwnd(new WindowInteropHelper(_ownerWindow).Handle);
         _captionButtonHandler = new CaptionButtonHandler(_ownerHwndSource);
         _captionButtonHandler.Add(MinimizeButton);
         _captionButtonHandler.Add(MaximizeButton);

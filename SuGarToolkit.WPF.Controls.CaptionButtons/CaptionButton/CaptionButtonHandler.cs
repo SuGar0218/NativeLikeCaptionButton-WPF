@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -18,7 +17,7 @@ public class CaptionButtonHandler
     {
         _buttons.Add(button);
         button.IsVisibleChanged += OnButtonIsVisibleChanged;
-        if (button.Visibility is Visibility.Visible)
+        if (button.IsVisible)
         {
             DependencyObject child = VisualTreeHelper.GetChild(button, 0);
             _cacheButtonToChild.Add(button, child);
@@ -51,25 +50,22 @@ public class CaptionButtonHandler
                     CaptionButton? button = GetPointedButton(lParam);
                     if (button is null)  // 鼠标不在任何标题栏按钮上
                     {
-                        hoveredButton?.IsMouseOverInTitleBar = false;
-                        hoveredButton = null;
+                        HoveredButton = null;
                         break;
                     }
                     if (button.IsEnabled)
                     {
-                        if (pressedButton is not null && pressedButton != button)  // 已经按下了其他按钮
+                        if (PressedButton is not null && PressedButton != button)  // 已经按下了其他按钮
                         {
-                            pressedButton.IsMouseOverInTitleBar = false;
-                            pressedButton.IsPressedInTitleBar = false;
+                            PressedButton.IsMouseOverInTitleBar = false;
+                            PressedButton.IsPressedInTitleBar = false;
                             break;
                         }
-                        else if (pressedButton == button)
+                        else if (PressedButton == button)
                         {
-                            pressedButton.IsPressedInTitleBar = true;
+                            PressedButton.IsPressedInTitleBar = true;
                         }
-                        hoveredButton?.IsMouseOverInTitleBar = false;
-                        button.IsMouseOverInTitleBar = true;
-                        hoveredButton = button;
+                        HoveredButton = button;
                     }
                     handled = true;
                     return (nint) button.Kind;
@@ -80,16 +76,14 @@ public class CaptionButtonHandler
                     CaptionButton? button = GetPointedButton(lParam);
                     if (button is null)  // 没点到标题栏按钮上
                     {
-                        hoveredButton?.IsMouseOverInTitleBar = false;
-                        hoveredButton = null;
-                        pressedButton?.IsPressedInTitleBar = false;
-                        pressedButton = null;
+                        HoveredButton = null;
+                        PressedButton = null;
                         break;
                     }
                     if (button.IsEnabled)
                     {
                         button.IsPressedInTitleBar = true;
-                        pressedButton = button;
+                        PressedButton = button;
                     }
                     handled = true;
                     break;
@@ -100,27 +94,23 @@ public class CaptionButtonHandler
                     CaptionButton? button = GetPointedButton(lParam);
                     if (button is null)
                     {
-                        pressedButton?.IsPressedInTitleBar = false;
-                        pressedButton = null;
+                        PressedButton = null;
                         break;
                     }
 
-                    if (button.IsEnabled && button == pressedButton)
+                    if (button.IsEnabled && button == PressedButton)
                     {
                         button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                     }
-                    pressedButton?.IsPressedInTitleBar = false;
-                    pressedButton = null;
+                    PressedButton = null;
                     handled = true;
                     break;
                 }
 
             case WM_NCMOUSELEAVE:
                 {
-                    hoveredButton?.IsMouseOverInTitleBar = false;
-                    hoveredButton = null;
-                    pressedButton?.IsPressedInTitleBar = false;
-                    pressedButton = null;
+                    HoveredButton = null;
+                    PressedButton = null;
                     break;
                 }
         }
@@ -129,23 +119,10 @@ public class CaptionButtonHandler
 
     private CaptionButton? GetPointedButton(nint lParam)
     {
-        Point pointerScreenPosition = GetPointerScreenPixelPosition(lParam);
+        Point pointerScreenPosition = new(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         Window ownerWindow = Window.GetWindow(_cacheChildToButton.Keys.First());
         return ownerWindow.InputHitTest(ownerWindow.PointFromScreen(pointerScreenPosition)) is DependencyObject hit && _cacheChildToButton.TryGetValue(hit, out CaptionButton? button) ? button : null;
     }
-
-    /// <summary>
-    /// 根据 HwndSourceHook 参数获取鼠标的屏幕位置。
-    /// <br/>
-    /// 此函数专为 GetPointerNonClientRegion 所用。
-    /// </summary>
-    /// <param name="lParam"></param>
-    /// <returns></returns>
-    private static Point GetPointerScreenPixelPosition(nint lParam) => new()
-    {
-        X = GET_X_LPARAM(lParam),
-        Y = GET_Y_LPARAM(lParam)
-    };
 
     private static nint GET_X_LPARAM(nint lParam) => lParam & 0x0000FFFF;
     private static nint GET_Y_LPARAM(nint lParam) => (lParam >> 16) & 0x0000FFFF;
@@ -155,8 +132,27 @@ public class CaptionButtonHandler
     private readonly Dictionary<CaptionButton, DependencyObject> _cacheButtonToChild = [];
     private readonly Dictionary<DependencyObject, CaptionButton> _cacheChildToButton = [];
 
-    private CaptionButton? hoveredButton;
-    private CaptionButton? pressedButton;
+    private CaptionButton? HoveredButton
+    {
+        get => field;
+        set
+        {
+            field?.IsMouseOverInTitleBar = false;
+            field = value;
+            field?.IsMouseOverInTitleBar = true;
+        }
+    }
+
+    private CaptionButton? PressedButton
+    {
+        get => field;
+        set
+        {
+            field?.IsPressedInTitleBar = false;
+            field = value;
+            field?.IsPressedInTitleBar = true;
+        }
+    }
 
     private const int WM_NCHITTEST = 0x0084;
     private const int WM_NCLBUTTONDOWN = 0x00A1;

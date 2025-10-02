@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using SuGarToolkit.WPF.SourceGenerators;
 
-using SuGarToolkit.WPF.SourceGenerators;
+using System.Windows;
 
 namespace SuGarToolkit.WPF.Controls.CaptionButtons;
 
