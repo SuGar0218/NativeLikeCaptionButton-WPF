@@ -108,7 +108,7 @@
                     </my:TitleBarButton>
                     <my:TitleBarButton
                         IsEnabled="{Binding IsFullScreenButtonEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsFullScreenButtonEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Visibility="{Binding IsFullScreenButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                         WindowChrome.IsHitTestVisibleInChrome="True">
                         <my:FontIcon FontSize="12" Glyph="&#xE740;" />
                     </my:TitleBarButton>
