@@ -42,7 +42,8 @@
             Focusable="False"
             FontSize="{StaticResource CaptionButtonIconFontSize}"
             Glyph="{Binding}"
-            IsHitTestVisible="False" />
+            IsHitTestVisible="False"
+            SnapsToDevicePixels="True" />
     </DataTemplate>
 
     <Style

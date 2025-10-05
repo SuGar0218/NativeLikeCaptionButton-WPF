@@ -14,15 +14,9 @@ public partial class MainWindow : Window
         switch (WindowState)
         {
             case WindowState.Maximized:
-                double top = SystemParameters.ResizeFrameHorizontalBorderHeight + SystemParameters.FixedFrameHorizontalBorderHeight + SystemParameters.BorderWidth;
                 double left = SystemParameters.ResizeFrameVerticalBorderWidth + SystemParameters.FixedFrameVerticalBorderWidth + SystemParameters.BorderWidth;
-                LayoutRoot.Margin = new Thickness
-                {
-                    Left = left,
-                    Right = left,
-                    Top = top,
-                    Bottom = top
-                };
+                double top = SystemParameters.ResizeFrameHorizontalBorderHeight + SystemParameters.FixedFrameHorizontalBorderHeight + SystemParameters.BorderWidth;
+                LayoutRoot.Margin = new Thickness(left, top, left, top);
                 break;
             default:
                 LayoutRoot.Margin = new Thickness(0);

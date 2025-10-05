@@ -74,13 +74,11 @@ public class CaptionButtonHandler
                     CaptionButton? button = GetPointedButton(lParam);
                     if (button is null)  // 没点到标题栏按钮上
                     {
-                        HoveredButton = null;
                         PressedButton = null;
                         break;
                     }
                     if (button.IsEnabled)
                     {
-                        button.IsPressedInTitleBar = true;
                         PressedButton = button;
                     }
                     handled = true;
@@ -118,14 +116,14 @@ public class CaptionButtonHandler
     private CaptionButton? GetPointedButton(nint lParam)
     {
         Point pointerScreenPosition = new(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-        Window ownerWindow = Window.GetWindow(_cacheChildToButton.Keys.First());
+        Window ownerWindow = Window.GetWindow(_buttons.First());
         return ownerWindow.InputHitTest(ownerWindow.PointFromScreen(pointerScreenPosition)) is DependencyObject hit && _cacheChildToButton.TryGetValue(hit, out CaptionButton? button) ? button : null;
     }
 
     private static nint GET_X_LPARAM(nint lParam) => lParam & 0x0000FFFF;
     private static nint GET_Y_LPARAM(nint lParam) => (lParam >> 16) & 0x0000FFFF;
 
-    private readonly HwndSource? _hwndSource;
+    private readonly HwndSource _hwndSource;
     private readonly HashSet<CaptionButton> _buttons = [];
     private readonly Dictionary<DependencyObject, CaptionButton> _cacheChildToButton = [];
 
