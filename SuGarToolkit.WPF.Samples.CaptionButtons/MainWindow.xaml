@@ -27,207 +27,241 @@
     </WindowChrome.WindowChrome>
 
     <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Height="144" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
 
-        <my:NativeLikeTitleBar
-            Grid.Row="0"
-            Height="{Binding TitleBarHeight, Mode=OneWay}"
-            BackButtonVisibility="{Binding IsBackButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            CloseButtonVisibility="{Binding IsCloseButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            HelpButtonVisibility="{Binding IsHelpButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            IsBackButtonEnabled="{Binding IsBackButtonEnabled, Mode=OneWay}"
-            IsCloseButtonEnabled="{Binding IsCloseButtonEnabled, Mode=OneWay}"
-            IsHelpButtonEnabled="{Binding IsHelpButtonEnabled, Mode=OneWay}"
-            IsMaximizeButtonEnabled="{Binding IsMaximizeButtonEnabled, Mode=OneWay}"
-            IsMinimizeButtonEnabled="{Binding IsMinimizeButtonEnabled, Mode=OneWay}"
-            IsPaneToggleButtonEnabled="{Binding IsPaneToggleButtonEnabled, Mode=OneWay}"
-            MaximizeButtonVisibility="{Binding IsMaximizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            MinimizeButtonVisibility="{Binding IsMinimizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-            PaneToggleButtonVisibility="{Binding IsPaneToggleButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.OpacityMask>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="0,0" EndPoint="0,96">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.1" Color="#FF000000" />
+                        <GradientStop Offset="1.0" Color="#00000000" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Grid.OpacityMask>
 
-            <my:NativeLikeTitleBar.CustomHeader>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock
-                        Grid.Column="0"
-                        Margin="8,0"
-                        VerticalAlignment="Center"
-                        Text="CaptionText"
-                        Visibility="{Binding IsCaptionTextVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <Menu
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Background="Transparent"
-                        IsEnabled="{Binding IsMenuBarEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsMenuBarVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <MenuItem Header="File">
-                            <MenuItem Header="Open" />
-                            <MenuItem Header="Save" />
-                            <MenuItem Header="Save as ..." />
-                        </MenuItem>
-                        <MenuItem Header="Edit">
-                            <MenuItem Header="Copy" />
-                            <MenuItem Header="Paste" />
-                            <MenuItem Header="Cut" />
-                        </MenuItem>
-                        <MenuItem Header="View">
-                            <MenuItem Header="Lorem" />
-                            <MenuItem Header="Ipsum" />
-                        </MenuItem>
-                    </Menu>
-                </Grid>
-            </my:NativeLikeTitleBar.CustomHeader>
+            <Image
+                Grid.Column="0"
+                RenderTransformOrigin="0.5, 0.5"
+                Source="/Resources/BingHeaderBackground_Layer.png">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="180" />
+                </Image.RenderTransform>
+            </Image>
+            <Rectangle Grid.Column="1" Fill="#F1FBFE" />
+            <Image Grid.Column="2" Source="/Resources/BingHeaderBackground_Layer.png" />
+        </Grid>
 
-            <my:NativeLikeTitleBar.CustomFooter>
-                <StackPanel Orientation="Horizontal">
-                    <my:TitleBarButton
-                        IsEnabled="{Binding IsPersonPictureEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsPersonPictureVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <my:FontIcon FontSize="14" Glyph="&#xE77B;" />
-                    </my:TitleBarButton>
-                    <my:TitleBarButton
-                        IsEnabled="{Binding IsThemeToggleButtonEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsThemeToggleButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <my:FontIcon FontSize="14" Glyph="&#xE793;" />
-                    </my:TitleBarButton>
-                    <my:TitleBarButton
-                        IsEnabled="{Binding IsSettingsButtonEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsSettingsButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <my:FontIcon FontSize="14" Glyph="&#xE713;" />
-                    </my:TitleBarButton>
-                    <my:TitleBarButton
-                        IsEnabled="{Binding IsFullScreenButtonEnabled, Mode=OneWay}"
-                        Visibility="{Binding IsFullScreenButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        WindowChrome.IsHitTestVisibleInChrome="True">
-                        <my:FontIcon FontSize="12" Glyph="&#xE740;" />
-                    </my:TitleBarButton>
-                </StackPanel>
-            </my:NativeLikeTitleBar.CustomFooter>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <TextBox
-                Width="300"
-                MaxHeight="30"
-                VerticalContentAlignment="Center"
-                Text="Lorem ipsum set amet"
-                WindowChrome.IsHitTestVisibleInChrome="True" />
-        </my:NativeLikeTitleBar>
+            <my:NativeLikeTitleBar
+                Grid.Row="0"
+                HelpButtonClick="HelpButtonClick"
+                Height="{Binding TitleBarHeight, Mode=OneWay}"
+                BackButtonVisibility="{Binding IsBackButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                CloseButtonVisibility="{Binding IsCloseButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                HelpButtonVisibility="{Binding IsHelpButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                IsBackButtonEnabled="{Binding IsBackButtonEnabled, Mode=OneWay}"
+                IsCloseButtonEnabled="{Binding IsCloseButtonEnabled, Mode=OneWay}"
+                IsHelpButtonEnabled="{Binding IsHelpButtonEnabled, Mode=OneWay}"
+                IsMaximizeButtonEnabled="{Binding IsMaximizeButtonEnabled, Mode=OneWay}"
+                IsMinimizeButtonEnabled="{Binding IsMinimizeButtonEnabled, Mode=OneWay}"
+                IsPaneToggleButtonEnabled="{Binding IsPaneToggleButtonEnabled, Mode=OneWay}"
+                MaximizeButtonVisibility="{Binding IsMaximizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                MinimizeButtonVisibility="{Binding IsMinimizeButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                PaneToggleButtonClick="PaneToggleButtonClick"
+                PaneToggleButtonVisibility="{Binding IsPaneToggleButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-        <ScrollViewer
-            Grid.Row="1"
-            FontSize="16"
-            VerticalScrollBarVisibility="Auto">
-            <Grid Margin="24">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <my:NativeLikeTitleBar.CustomHeader>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="8,0"
+                            VerticalAlignment="Center"
+                            Text="CaptionText"
+                            Visibility="{Binding IsCaptionTextVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Menu
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            IsEnabled="{Binding IsMenuBarEnabled, Mode=OneWay}"
+                            Visibility="{Binding IsMenuBarVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                            <MenuItem Header="File">
+                                <MenuItem Header="Open" />
+                                <MenuItem Header="Save" />
+                                <MenuItem Header="Save as ..." />
+                            </MenuItem>
+                            <MenuItem Header="Edit">
+                                <MenuItem Header="Copy" />
+                                <MenuItem Header="Paste" />
+                                <MenuItem Header="Cut" />
+                            </MenuItem>
+                            <MenuItem Header="View">
+                                <MenuItem Header="Lorem" />
+                                <MenuItem Header="Ipsum" />
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                </my:NativeLikeTitleBar.CustomHeader>
 
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                        <ComboBox SelectedItem="{Binding TitleBarHeight, Mode=TwoWay}">
-                            <system:Double>30</system:Double>
-                            <system:Double>32</system:Double>
-                            <system:Double>36</system:Double>
-                            <system:Double>42</system:Double>
-                            <system:Double>48</system:Double>
-                            <system:Double>54</system:Double>
-                            <system:Double>56</system:Double>
-                        </ComboBox>
-                        <Expander Header="BackButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsBackButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsBackButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="PaneToggleButton / MenuButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsPaneToggleButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsPaneToggleButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="MenuBar">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsMenuBarVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsMenuBarEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="TextBox">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsAutoSuggestBoxVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsAutoSuggestBoxEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
+                <my:NativeLikeTitleBar.CustomFooter>
+                    <StackPanel Orientation="Horizontal">
+                        <my:TitleBarButton
+                            IsEnabled="{Binding IsPersonPictureEnabled, Mode=OneWay}"
+                            Visibility="{Binding IsPersonPictureVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                            <my:FontIcon FontSize="14" Glyph="&#xE77B;" />
+                        </my:TitleBarButton>
+                        <my:TitleBarButton
+                            IsEnabled="{Binding IsThemeToggleButtonEnabled, Mode=OneWay}"
+                            Visibility="{Binding IsThemeToggleButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                            <my:FontIcon FontSize="14" Glyph="&#xE793;" />
+                        </my:TitleBarButton>
+                        <my:TitleBarButton
+                            IsEnabled="{Binding IsSettingsButtonEnabled, Mode=OneWay}"
+                            Visibility="{Binding IsSettingsButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                            <my:FontIcon FontSize="14" Glyph="&#xE713;" />
+                        </my:TitleBarButton>
+                        <my:TitleBarButton
+                            Click="FullScreenButtonClick"
+                            IsEnabled="{Binding IsFullScreenButtonEnabled, Mode=OneWay}"
+                            Visibility="{Binding IsFullScreenButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                            <my:FontIcon FontSize="12" Glyph="&#xE740;" />
+                        </my:TitleBarButton>
                     </StackPanel>
+                </my:NativeLikeTitleBar.CustomFooter>
 
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                        <Expander Header="CloseButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsCloseButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsCloseButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="MaximizeButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsMaximizeButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsMaximizeButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="MinimizeButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsMinimizeButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsMinimizeButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="HelpButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsHelpButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsHelpButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="FullScreenButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsFullScreenButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsFullScreenButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="SettingsButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsSettingsButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsSettingsButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="ThemeToggleButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsThemeToggleButtonVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsHelpButtonEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander Header="AccountButton">
-                            <StackPanel>
-                                <CheckBox Content="Visiblity" IsChecked="{Binding IsPersonPictureVisible, Mode=TwoWay}" />
-                                <CheckBox Content="IsEnabled" IsChecked="{Binding IsPersonPictureEnabled, Mode=TwoWay}" />
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
+                <TextBox
+                    Width="300"
+                    MaxHeight="30"
+                    VerticalContentAlignment="Center"
+                    Text="Lorem ipsum set amet"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
+            </my:NativeLikeTitleBar>
+
+            <ScrollViewer
+                x:Name="PART_SettingsScrollViewer"
+                Grid.Row="1"
+                FontSize="16"
+                VerticalScrollBarVisibility="Auto">
+                <Grid Margin="24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <ComboBox SelectedItem="{Binding TitleBarHeight, Mode=TwoWay}">
+                                <system:Double>30</system:Double>
+                                <system:Double>32</system:Double>
+                                <system:Double>36</system:Double>
+                                <system:Double>42</system:Double>
+                                <system:Double>48</system:Double>
+                                <system:Double>54</system:Double>
+                                <system:Double>56</system:Double>
+                            </ComboBox>
+                            <Expander Header="BackButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsBackButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsBackButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="PaneToggleButton / MenuButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsPaneToggleButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsPaneToggleButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="MenuBar">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsMenuBarVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsMenuBarEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="TextBox">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsAutoSuggestBoxVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsAutoSuggestBoxEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <Expander Header="CloseButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsCloseButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsCloseButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="MaximizeButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsMaximizeButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsMaximizeButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="MinimizeButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsMinimizeButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsMinimizeButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="HelpButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsHelpButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsHelpButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="FullScreenButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsFullScreenButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsFullScreenButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="SettingsButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsSettingsButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsSettingsButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="ThemeToggleButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsThemeToggleButtonVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsHelpButtonEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="AccountButton">
+                                <StackPanel>
+                                    <CheckBox Content="Visiblity" IsChecked="{Binding IsPersonPictureVisible, Mode=TwoWay}" />
+                                    <CheckBox Content="IsEnabled" IsChecked="{Binding IsPersonPictureEnabled, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </ScrollViewer>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 
 </Window>

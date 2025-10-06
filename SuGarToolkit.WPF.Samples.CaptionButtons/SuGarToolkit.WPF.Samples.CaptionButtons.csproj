@@ -10,11 +10,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\BingHeaderBackground_Gradient.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\SuGarToolkit.WPF.Controls.CaptionButtons\SuGarToolkit.WPF.Controls.CaptionButtons.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\BingHeaderBackground_Gradient.png" />
+	  <Resource Include="Resources\BingHeaderBackground_Layer.png" />
 	</ItemGroup>
 
 </Project>
