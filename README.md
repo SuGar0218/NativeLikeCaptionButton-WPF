@@ -10,7 +10,7 @@ You can decide for every button:
 - IsEnabled (true, false)
 - Height (typically 30 and 48 DIP)
 
-<img width="3313" height="1457" alt="examples" src="https://github.com/user-attachments/assets/d22adf3e-71ae-4831-a4e5-bddab9517c7e" />
+![banner](https://github.com/user-attachments/assets/257fb441-042e-4348-8dc2-c2588c32e380)
 
 ## Simple example
 
@@ -82,3 +82,7 @@ private void Window_StateChanged(object sender, EventArgs e)
     }
 }
 ```
+
+## NuGet
+
+https://www.nuget.org/packages/SuGarToolkit.WPF.Controls.CaptionButtons/
