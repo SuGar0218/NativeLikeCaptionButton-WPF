@@ -3,6 +3,7 @@ using SuGarToolkit.WPF.SourceGenerators;
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 
 using Windows.Win32;
@@ -43,6 +44,18 @@ public partial class CaptionButtonBar : Control
     public event EventHandler? MaximizeButtonClick;
     public event EventHandler? CloseButtonClick;
     public event EventHandler? HelpButtonClick;
+
+    [DependencyProperty]
+    public partial ICommand? MinimizeButtonCommand { get; set; }
+
+    [DependencyProperty]
+    public partial ICommand? MaximizeButtonCommand { get; set; }
+
+    [DependencyProperty]
+    public partial ICommand? CloseButtonCommand { get; set; }
+
+    [DependencyProperty]
+    public partial ICommand? HelpButtonCommand { get; set; }
 
     [DependencyProperty(DefaultValue = Visibility.Visible)]
     public partial Visibility MinimizeButtonVisibility { get; set; }
@@ -131,11 +144,13 @@ public partial class CaptionButtonBar : Control
 
     private void OnMinimizeButtonClick(object sender, RoutedEventArgs e)
     {
+        MinimizeButtonClick?.Invoke(this, e);
         _ownerWindow.WindowState = WindowState.Minimized;
     }
 
     private void OnMaximizeButtonClick(object sender, RoutedEventArgs e)
     {
+        MaximizeButtonClick?.Invoke(this, e);
         if (_ownerWindow.WindowState is WindowState.Maximized)
         {
             _ownerWindow.WindowState = WindowState.Normal;
@@ -146,13 +161,9 @@ public partial class CaptionButtonBar : Control
         }
     }
 
-    private void OnRestoreButtonClick(object sender, RoutedEventArgs e)
-    {
-        _ownerWindow.WindowState = WindowState.Normal;
-    }
-
     private void OnCloseButtonClick(object sender, RoutedEventArgs e)
     {
+        CloseButtonClick?.Invoke(this, e);
         _ownerWindow.Close();
     }
 

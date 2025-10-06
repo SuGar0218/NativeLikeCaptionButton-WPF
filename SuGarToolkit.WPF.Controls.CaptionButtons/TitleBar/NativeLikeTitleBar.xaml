@@ -12,6 +12,7 @@
 
     <Style TargetType="{x:Type local:NativeLikeTitleBar}">
         <Setter Property="MinHeight" Value="{StaticResource CaptionStandardHeight}" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:NativeLikeTitleBar}">
@@ -37,9 +38,11 @@
                                 </Grid.ColumnDefinitions>
 
                                 <local:TitleBarButton
+                                    x:Name="PART_BackButton"
                                     Grid.Column="0"
                                     Width="46"
                                     VerticalAlignment="Stretch"
+                                    Command="{TemplateBinding BackButtonCommand}"
                                     IsActive="{TemplateBinding IsActive}"
                                     IsEnabled="{TemplateBinding IsBackButtonEnabled}"
                                     Visibility="{TemplateBinding BackButtonVisibility}"
@@ -48,9 +51,11 @@
                                 </local:TitleBarButton>
 
                                 <local:TitleBarButton
+                                    x:Name="PART_PaneToggleButton"
                                     Grid.Column="1"
                                     Width="46"
                                     VerticalAlignment="Stretch"
+                                    Command="{TemplateBinding PaneToggleButtonCommand}"
                                     IsActive="{TemplateBinding IsActive}"
                                     IsEnabled="{TemplateBinding IsPaneToggleButtonEnabled}"
                                     Visibility="{TemplateBinding PaneToggleButtonVisibility}"
@@ -85,17 +90,22 @@
                                     Content="{TemplateBinding CustomFooter}" />
 
                                 <local:CaptionButtonBar
+                                    x:Name="PART_CaptionButtonBar"
                                     Grid.Column="1"
                                     MinHeight="0"
+                                    CloseButtonCommand="{TemplateBinding CloseButtonCommand}"
                                     CloseButtonVisibility="{TemplateBinding CloseButtonVisibility}"
                                     Focusable="False"
+                                    HelpButtonCommand="{TemplateBinding HelpButtonCommand}"
                                     HelpButtonVisibility="{TemplateBinding HelpButtonVisibility}"
                                     IsActive="{TemplateBinding IsActive}"
                                     IsCloseButtonEnabled="{TemplateBinding IsCloseButtonEnabled}"
                                     IsHelpButtonEnabled="{TemplateBinding IsHelpButtonEnabled}"
                                     IsMaximizeButtonEnabled="{TemplateBinding IsMaximizeButtonEnabled}"
                                     IsMinimizeButtonEnabled="{TemplateBinding IsMinimizeButtonEnabled}"
+                                    MaximizeButtonCommand="{TemplateBinding MaximizeButtonCommand}"
                                     MaximizeButtonVisibility="{TemplateBinding MaximizeButtonVisibility}"
+                                    MinimizeButtonCommand="{TemplateBinding MinimizeButtonCommand}"
                                     MinimizeButtonVisibility="{TemplateBinding MinimizeButtonVisibility}" />
                             </Grid>
                         </Grid>

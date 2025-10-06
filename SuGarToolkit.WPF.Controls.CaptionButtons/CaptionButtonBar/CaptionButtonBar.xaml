@@ -20,21 +20,25 @@
                         <StackPanel Orientation="Horizontal">
                             <local:CaptionHelpButton
                                 x:Name="HelpButton"
+                                Command="{TemplateBinding HelpButtonCommand}"
                                 IsActive="{TemplateBinding IsActive}"
                                 IsEnabled="{TemplateBinding IsHelpButtonEnabled}"
                                 Visibility="{TemplateBinding HelpButtonVisibility}" />
                             <local:CaptionMinimizeButton
                                 x:Name="MinimizeButton"
+                                Command="{TemplateBinding MinimizeButtonCommand}"
                                 IsActive="{TemplateBinding IsActive}"
                                 IsEnabled="{TemplateBinding IsMinimizeButtonEnabled}"
                                 Visibility="{TemplateBinding MinimizeButtonVisibility}" />
                             <local:CaptionMaximizeButton
                                 x:Name="MaximizeButton"
+                                Command="{TemplateBinding MaximizeButtonCommand}"
                                 IsActive="{TemplateBinding IsActive}"
                                 IsEnabled="{TemplateBinding IsMaximizeButtonEnabled}"
                                 Visibility="{TemplateBinding MaximizeButtonVisibility}" />
                             <local:CaptionCloseButton
                                 x:Name="CloseButton"
+                                Command="{TemplateBinding CloseButtonCommand}"
                                 IsActive="{TemplateBinding IsActive}"
                                 IsEnabled="{TemplateBinding IsCloseButtonEnabled}"
                                 Visibility="{TemplateBinding CloseButtonVisibility}" />
