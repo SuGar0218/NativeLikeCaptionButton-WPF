@@ -66,15 +66,9 @@ private void Window_StateChanged(object sender, EventArgs e)
     switch (WindowState)
     {
         case WindowState.Maximized:
-            double top = SystemParameters.ResizeFrameHorizontalBorderHeight + SystemParameters.FixedFrameHorizontalBorderHeight;
-            double left = SystemParameters.ResizeFrameVerticalBorderWidth + SystemParameters.FixedFrameVerticalBorderWidth;
-            LayoutRoot.Margin = new Thickness
-            {
-                Left = left,
-                Right = left,
-                Top = top,
-                Bottom = top
-            };
+            double left = SystemParameters.ResizeFrameVerticalBorderWidth + SystemParameters.FixedFrameVerticalBorderWidth + SystemParameters.BorderWidth;
+            double top = SystemParameters.ResizeFrameHorizontalBorderHeight + SystemParameters.FixedFrameHorizontalBorderHeight + SystemParameters.BorderWidth;
+            LayoutRoot.Margin = new Thickness(left, top, left, top);
             break;
         default:
             LayoutRoot.Margin = new Thickness(0);
@@ -82,6 +76,8 @@ private void Window_StateChanged(object sender, EventArgs e)
     }
 }
 ```
+
+(works properly on Windows 10 and Windows 11)
 
 ## NuGet
 
