@@ -11,7 +11,7 @@
     <Thickness x:Key="TitleBarCaptionTextMargin">8,0</Thickness>
 
     <Style TargetType="{x:Type local:NativeLikeTitleBar}">
-        <Setter Property="MinHeight" Value="{StaticResource CaptionStandardHeight}" />
+        <Setter Property="MinHeight" Value="{DynamicResource CaptionStandardHeight}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
@@ -112,9 +112,9 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
-                            <Setter TargetName="PART_CustomHeaderContentControl" Property="Opacity" Value="{StaticResource TitleBarButtonInactiveForegroundOpacity}" />
-                            <Setter TargetName="PART_CenterContentPresenter" Property="Opacity" Value="{StaticResource TitleBarButtonInactiveForegroundOpacity}" />
-                            <Setter TargetName="PART_CustomFooterContentControl" Property="Opacity" Value="{StaticResource TitleBarButtonInactiveForegroundOpacity}" />
+                            <Setter TargetName="PART_CustomHeaderContentControl" Property="Opacity" Value="{DynamicResource TitleBarButtonInactiveForegroundOpacity}" />
+                            <Setter TargetName="PART_CenterContentPresenter" Property="Opacity" Value="{DynamicResource TitleBarButtonInactiveForegroundOpacity}" />
+                            <Setter TargetName="PART_CustomFooterContentControl" Property="Opacity" Value="{DynamicResource TitleBarButtonInactiveForegroundOpacity}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

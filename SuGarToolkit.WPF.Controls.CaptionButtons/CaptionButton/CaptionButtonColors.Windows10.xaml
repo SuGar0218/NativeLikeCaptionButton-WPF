@@ -79,52 +79,52 @@
     <SolidColorBrush x:Key="CaptionRestoreButtonHoverForeground" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush x:Key="CaptionCloseButtonHoverForeground" Color="{x:Static SystemColors.HighlightTextColor}" />
 
-    <SolidColorBrush x:Key="CaptionMinimizeButtonHoverBackground" Color="{StaticResource TitleBarButtonHoverBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionMaximizeButtonHoverBackground" Color="{StaticResource TitleBarButtonHoverBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionRestoreButtonHoverBackground" Color="{StaticResource TitleBarButtonHoverBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionCloseButtonHoverBackground" Color="{StaticResource CaptionCloseButtonHoverBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionMinimizeButtonHoverBackground" Color="{DynamicResource TitleBarButtonHoverBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionMaximizeButtonHoverBackground" Color="{DynamicResource TitleBarButtonHoverBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionRestoreButtonHoverBackground" Color="{DynamicResource TitleBarButtonHoverBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionCloseButtonHoverBackground" Color="{DynamicResource CaptionCloseButtonHoverBackgroundColor}" />
 
     <!--  Pressed  -->
 
     <SolidColorBrush
         x:Key="CaptionMinimizeButtonPressedForeground"
-        Opacity="{StaticResource TitleBarButtonPressedForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonPressedForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionMaximizeButtonPressedForeground"
-        Opacity="{StaticResource TitleBarButtonPressedForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonPressedForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionRestoreButtonPressedForeground"
-        Opacity="{StaticResource TitleBarButtonPressedForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonPressedForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionCloseButtonPressedForeground"
-        Opacity="{StaticResource TitleBarButtonPressedForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonPressedForegroundOpacity}"
         Color="{x:Static SystemColors.HighlightTextColor}" />
 
-    <SolidColorBrush x:Key="CaptionMinimizeButtonPressedBackground" Color="{StaticResource TitleBarButtonPressedBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionMaximizeButtonPressedBackground" Color="{StaticResource TitleBarButtonPressedBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionRestoreButtonPressedBackground" Color="{StaticResource TitleBarButtonPressedBackgroundColor}" />
-    <SolidColorBrush x:Key="CaptionCloseButtonPressedBackground" Color="{StaticResource CaptionCloseButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionMinimizeButtonPressedBackground" Color="{DynamicResource TitleBarButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionMaximizeButtonPressedBackground" Color="{DynamicResource TitleBarButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionRestoreButtonPressedBackground" Color="{DynamicResource TitleBarButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="CaptionCloseButtonPressedBackground" Color="{DynamicResource CaptionCloseButtonPressedBackgroundColor}" />
 
     <!--  Disabled  -->
 
     <SolidColorBrush
         x:Key="CaptionMinimizeButtonDisabledForeground"
-        Opacity="{StaticResource TitleBarButtonDisabledForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonDisabledForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionMaximizeButtonDisabledForeground"
-        Opacity="{StaticResource TitleBarButtonDisabledForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonDisabledForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionRestoreButtonDisabledForeground"
-        Opacity="{StaticResource TitleBarButtonDisabledForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonDisabledForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush
         x:Key="CaptionCloseButtonDisabledForeground"
-        Opacity="{StaticResource TitleBarButtonDisabledForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonDisabledForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
 
     <SolidColorBrush x:Key="CaptionMinimizeButtonDisabledBackground" Color="Transparent" />

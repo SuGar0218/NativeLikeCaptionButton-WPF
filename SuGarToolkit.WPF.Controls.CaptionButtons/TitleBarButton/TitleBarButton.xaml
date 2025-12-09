@@ -16,21 +16,22 @@
     <SolidColorBrush x:Key="TitleBarButtonForeground" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush x:Key="TitleBarButtonBackground" Color="Transparent" />
     <SolidColorBrush x:Key="TitleBarButtonHoverForeground" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
-    <SolidColorBrush x:Key="TitleBarButtonHoverBackground" Color="{StaticResource TitleBarButtonHoverBackgroundColor}" />
+    <SolidColorBrush x:Key="TitleBarButtonHoverBackground" Color="{DynamicResource TitleBarButtonHoverBackgroundColor}" />
     <SolidColorBrush
         x:Key="TitleBarButtonPressedForeground"
-        Opacity="{StaticResource TitleBarButtonPressedForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonPressedForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
-    <SolidColorBrush x:Key="TitleBarButtonPressedBackground" Color="{StaticResource TitleBarButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="TitleBarButtonPressedBackground" Color="{DynamicResource TitleBarButtonPressedBackgroundColor}" />
     <SolidColorBrush
         x:Key="TitleBarButtonDisabledForeground"
-        Opacity="{StaticResource TitleBarButtonDisabledForegroundOpacity}"
+        Opacity="{DynamicResource TitleBarButtonDisabledForegroundOpacity}"
         Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <SolidColorBrush x:Key="TitleBarButtonDisabledBackground" Color="Transparent" />
 
     <Style x:Key="TitleBarButtonDefaultStyle" TargetType="{x:Type local:TitleBarButton}">
-        <Setter Property="Width" Value="{StaticResource TitleBarButtonWidth}" />
+        <Setter Property="Width" Value="{DynamicResource TitleBarButtonWidth}" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource TitleBarButtonForeground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TitleBarButton}">
@@ -38,11 +39,6 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <Border.Resources>
-                            <Style TargetType="{x:Type Control}">
-                                <Setter Property="Focusable" Value="False" />
-                            </Style>
-                        </Border.Resources>
                         <ContentPresenter
                             x:Name="PART_ContentPresenter"
                             HorizontalAlignment="Center"
@@ -53,7 +49,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
-                            <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="{StaticResource TitleBarButtonInactiveForegroundOpacity}" />
+                            <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="{DynamicResource TitleBarButtonInactiveForegroundOpacity}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -61,16 +57,16 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource TitleBarButtonDisabledBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource TitleBarButtonDisabledForeground}" />
+                <Setter Property="Background" Value="{DynamicResource TitleBarButtonDisabledBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource TitleBarButtonDisabledForeground}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource TitleBarButtonHoverBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource TitleBarButtonHoverForeground}" />
+                <Setter Property="Background" Value="{DynamicResource TitleBarButtonHoverBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource TitleBarButtonHoverForeground}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource TitleBarButtonPressedBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource TitleBarButtonPressedForeground}" />
+                <Setter Property="Background" Value="{DynamicResource TitleBarButtonPressedBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource TitleBarButtonPressedForeground}" />
             </Trigger>
         </Style.Triggers>
     </Style>

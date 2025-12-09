@@ -10,7 +10,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FontIcon}">
                     <TextBlock
-                        FontFamily="{StaticResource FontIconFontFamily}"
+                        FontFamily="{DynamicResource FontIconFontFamily}"
                         FontSize="{TemplateBinding FontSize}"
                         Text="{TemplateBinding Glyph}" />
                 </ControlTemplate>
