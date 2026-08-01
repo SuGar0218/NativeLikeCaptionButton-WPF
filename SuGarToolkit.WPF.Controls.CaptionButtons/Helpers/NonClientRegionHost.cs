@@ -13,13 +13,11 @@ public class NonClientRegionHost
         {
             _hwndSource = (HwndSource) PresentationSource.FromVisual(_window);
             _hwndSource.AddHook(OnHwndSourceMessage);
-            Refresh();
         }
         else
         {
             _window.SourceInitialized += OnWindowSourceInitialized;
         }
-        _window.SizeChanged += OnWindowSizeChanged;
         _window.Unloaded += OnWindowUnloaded;
     }
 
@@ -27,55 +25,22 @@ public class NonClientRegionHost
     {
         _hwndSource = (HwndSource) PresentationSource.FromVisual(_window);
         _hwndSource.AddHook(OnHwndSourceMessage);
-        Refresh();
-    }
-
-    private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        Refresh();
     }
 
     private void OnWindowUnloaded(object sender, RoutedEventArgs e)
     {
         _hwndSource!.RemoveHook(OnHwndSourceMessage);
         _hwndSource = null;
-        _window.SizeChanged -= OnWindowSizeChanged;
     }
 
-    public void Add(NonClientRegionKind nonClientRegionKind, UIElement element)
+    public void Add(NonClientRegionKind nonClientRegionKind, IInputElement element)
     {
-        if (!_regions.TryGetValue(nonClientRegionKind, out Dictionary<UIElement, Rect>? region))
+        if (!_regions.TryGetValue(nonClientRegionKind, out HashSet<IInputElement>? region))
         {
             region = [];
             _regions.Add(nonClientRegionKind, region);
         }
-        region.Add(element, default);
-    }
-
-    public void Refresh()
-    {
-        foreach (NonClientRegionKind nonClientRegionKind in Enum.GetValues<NonClientRegionKind>())
-        {
-            Refresh(nonClientRegionKind);
-        }
-    }
-
-    public void Refresh(NonClientRegionKind nonClientRegionKind)
-    {
-        if (!_regions.TryGetValue(nonClientRegionKind, out Dictionary<UIElement, Rect>? value))
-            return;
-
-        foreach (UIElement element in value.Keys)
-        {
-            Refresh(nonClientRegionKind, element);
-        }
-    }
-
-    public void Refresh(NonClientRegionKind nonClientRegionKind, UIElement element)
-    {
-        _regions[nonClientRegionKind][element] = new Rect(
-            location: element.TransformToVisual(_window).Transform(new Point(0, 0)),
-            size: element.RenderSize);
+        region.Add(element);
     }
 
     private CaptionButton? lastHoveredButton;
@@ -87,8 +52,11 @@ public class NonClientRegionHost
         {
             case WM_NCHITTEST:
                 {
-                    handled = TryGetPointerNonClientRegionKind(lParam, out NonClientRegionKind nonClientRegionKind, out UIElement? element);
+                    NonClientRegionKind kind = NonClientRegionHitTest(lParam, out IInputElement? element);
+                    if (kind == NonClientRegionKind.None)
+                        break;
 
+                    handled = true;
                     lastHoveredButton?.IsMouseOverInTitleBar = false;
                     lastHoveredButton = null;
 
@@ -103,13 +71,16 @@ public class NonClientRegionHost
                         lastHoveredButton = button;
                     }
 
-                    return (nint) nonClientRegionKind;
+                    return (nint) kind;
                 }
 
             case WM_NCLBUTTONDOWN:
                 {
-                    handled = TryGetPointerNonClientRegionKind(lParam, out _, out UIElement? element);
+                    NonClientRegionKind kind = NonClientRegionHitTest(lParam, out IInputElement? element);
+                    if (kind == NonClientRegionKind.None)
+                        break;
 
+                    handled = true;
                     lastHoveredButton?.IsMouseOverInTitleBar = false;
                     lastHoveredButton = null;
                     lastPressedButton?.IsPressedInTitleBar = false;
@@ -126,8 +97,11 @@ public class NonClientRegionHost
 
             case WM_NCLBUTTONUP:
                 {
-                    handled = TryGetPointerNonClientRegionKind(lParam, out _, out UIElement? element);
+                    NonClientRegionKind kind = NonClientRegionHitTest(lParam, out IInputElement? element);
+                    if (kind == NonClientRegionKind.None)
+                        break;
 
+                    handled = true;
                     if (element is CaptionButton button && button.IsEnabled)
                     {
                         button.IsPressedInTitleBar = false;
@@ -136,7 +110,6 @@ public class NonClientRegionHost
                             button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                         }
                     }
-
                     lastHoveredButton?.IsMouseOverInTitleBar = false;
                     lastHoveredButton = null;
                     lastPressedButton?.IsPressedInTitleBar = false;
@@ -157,28 +130,19 @@ public class NonClientRegionHost
         return 0;
     }
 
-    private bool TryGetPointerNonClientRegionKind(
+    private NonClientRegionKind NonClientRegionHitTest(
         nint lParam,
-        out NonClientRegionKind nonClientRegionKind,
-        out UIElement? pointerOnElement)
+        out IInputElement? hitElement)
     {
         Point pointerScreenPosition = GetPointerScreenPixelPosition(lParam);
         Point pointerPosition = _window.PointFromScreen(pointerScreenPosition);  // PointFromScreen 把屏幕上的像素位置转换为 DIP 位置
+        hitElement = _window.InputHitTest(pointerPosition);
         foreach (NonClientRegionKind kind in _regions.Keys)
         {
-            foreach (UIElement element in _regions[kind].Keys)
-            {
-                if (_regions[kind][element].Contains(pointerPosition))
-                {
-                    pointerOnElement = element;
-                    nonClientRegionKind = kind;
-                    return true;
-                }
-            }
+            if (_regions[kind].Contains(hitElement))
+                return kind;
         }
-        pointerOnElement = null;
-        nonClientRegionKind = NonClientRegionKind.None;
-        return false;
+        return NonClientRegionKind.None;
     }
 
     /// <summary>
@@ -200,7 +164,7 @@ public class NonClientRegionHost
 
     private HwndSource? _hwndSource;
     private readonly Window _window;
-    private readonly Dictionary<NonClientRegionKind, Dictionary<UIElement, Rect>> _regions = [];
+    private readonly Dictionary<NonClientRegionKind, HashSet<IInputElement>> _regions = [];
 
     private const int WM_NCHITTEST = 0x0084;
     private const int WM_NCLBUTTONDOWN = 0x00A1;
